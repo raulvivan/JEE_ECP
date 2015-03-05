@@ -62,6 +62,10 @@ public class Voto {
 		this.estudios = estudios;
 	}
 	
+	public String toString(){
+		return "Valoracion: "+valoracion+" \nIP: "+ip+" \nEstudios: "+estudios;
+	}
+	
 	
 	
 

@@ -75,6 +75,9 @@ public class Tema {
 		this.votos = votos;
 	}
 	
+	public String toString(){
+		return "Tema: "+nombre+" \nPregunta: "+pregunta+" \n"+votos.toString();
+	}
 	
 	
 }
