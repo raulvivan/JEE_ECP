@@ -6,11 +6,9 @@ import javax.persistence.Persistence;
 import org.apache.logging.log4j.LogManager;
 
 import modelos.daos.DaoFactory;
-import modelos.daos.TemaDao;
-import modelos.daos.VotoDao;
 
 public class DaoJpaFactory extends DaoFactory {
-	private static final String PERSISTENCE_UNIT = "tictactoe";
+	private static final String PERSISTENCE_UNIT = "JEE_ECP";
 	private static EntityManagerFactory entityManagerFactory = Persistence
 			.createEntityManagerFactory(PERSISTENCE_UNIT);
 
@@ -24,12 +22,12 @@ public class DaoJpaFactory extends DaoFactory {
 	}
 
 	@Override
-	public TemaDao getTemaDao() {
+	public TemaDaoJpa getTemaDao() {
 		return new TemaDaoJpa();
 	}
 
 	@Override
-	public VotoDao getVotoDao() {
+	public VotoDaoJpa getVotoDao() {
 		return new VotoDaoJpa();
 	}
 

@@ -38,11 +38,19 @@ public class Tema {
 	}
 
 
-	public Tema(String nombre, String pregunta, List<Voto> votos) {
+	public Tema(String nombre, String pregunta) {
 		super();
 		this.nombre = nombre;
 		this.pregunta = pregunta;
-		this.votos = votos;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 

@@ -33,9 +33,18 @@ public class Voto {
 
 	public Voto(int valoracion, String ip, Estudios estudios) {
 		super();
+		assert(valoracion<=0 && valoracion >= 10):"La valoracion debe estar entre 0 y 10";
 		this.valoracion = valoracion;
 		this.ip = ip;
 		this.estudios = estudios;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getValoracion() {
