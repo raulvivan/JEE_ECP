@@ -76,8 +76,9 @@ public class Voto {
 		return "Valoracion: "+valoracion+" \nIP: "+ip+" \nEstudios: "+estudios;
 	}
 	
-	public boolean equals(Voto voto){
-		return this.id == voto.getId();
+	@Override
+	public boolean equals(Object obj){
+		return this.id == ((Voto) obj).getId();
 	}
 	
 	public static void main(String[] args){

@@ -67,7 +67,13 @@ public class TemaDaoJpaTest {
 
 	@Test
 	public void testFindAll() {
-		fail("Not yet implemented");
+		List<Tema> temas = new ArrayList<Tema>();
+		temas.add(tema);
+		Tema tema2 = new Tema("Deportes", "sjhlfbadfgb?");
+		temas.add(tema2);
+		temaDao.create(tema2);
+		
+		assertEquals(temaDao.findAll(), temas);
 	}
 
 }

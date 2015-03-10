@@ -92,8 +92,9 @@ public class Tema {
 		return "Tema: "+nombre+" \nPregunta: "+pregunta+" \n"+votos.toString();
 	}
 	
-	public boolean equals(Tema tema){
-		return this.nombre == tema.getNombre();
+	@Override
+	public boolean equals(Object obj) {
+		return this.nombre.equals(((Tema) obj).getNombre());
 	}
 	
 	public static void main(String[] args) {
