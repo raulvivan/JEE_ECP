@@ -1,12 +1,16 @@
 package modelos.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class Tema {
@@ -28,7 +32,7 @@ public class Tema {
 	
 	public static final String VOTO = "voto";
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Voto> votos;
 	
 	
@@ -42,6 +46,7 @@ public class Tema {
 		super();
 		this.nombre = nombre;
 		this.pregunta = pregunta;
+		this.votos = new ArrayList<Voto>();
 	}
 	
 	public int getId() {
@@ -86,6 +91,20 @@ public class Tema {
 	public String toString(){
 		return "Tema: "+nombre+" \nPregunta: "+pregunta+" \n"+votos.toString();
 	}
+	
+	public boolean equals(Tema tema){
+		return this.nombre == tema.getNombre();
+	}
+	
+	public static void main(String[] args) {
+        JpaFactory.dropAndCreateTables();
+        EntityManager em = JpaFactory.getEntityManagerFactory().createEntityManager();
+
+        em.getTransaction().begin();
+
+        em.getTransaction().commit();
+        
+    }
 	
 	
 }

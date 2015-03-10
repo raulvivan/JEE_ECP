@@ -1,6 +1,7 @@
 package modelos.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -73,6 +74,17 @@ public class Voto {
 	
 	public String toString(){
 		return "Valoracion: "+valoracion+" \nIP: "+ip+" \nEstudios: "+estudios;
+	}
+	
+	public boolean equals(Voto voto){
+		return this.id == voto.getId();
+	}
+	
+	public static void main(String[] args){
+		JpaFactory.dropAndCreateTables();
+        EntityManager entityManager = JpaFactory.getEntityManagerFactory().createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.getTransaction().commit();
 	}
 	
 	

@@ -5,8 +5,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import modelos.daos.DaoFactory;
+import modelos.daos.TemaDao;
 import modelos.daos.jpa.DaoJpaFactory;
-import modelos.daos.jpa.TemaDaoJpa;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
 import modelos.utils.Estudios;
@@ -18,28 +19,29 @@ import org.junit.Test;
 
 public class TemaDaoJpaTest {
 	
-	private TemaDaoJpa temaDao;
-	private static DaoJpaFactory factory;
+	private TemaDao temaDao;
 	private Tema tema;
 	
 	@BeforeClass
-	public static void init(){
-		factory = new DaoJpaFactory();
+	public static void beforeClass(){
+		
 	}
 	
 	@Before
-	public void prepare(){
-		temaDao = factory.getTemaDao();
+	public void before(){
+		DaoFactory.setFactory(new DaoJpaFactory());
+		temaDao = DaoFactory.getFactory().getTemaDao();
 		tema = new Tema("Clima", "¿Que nivel de nubes hay?");
 		List<Voto> votos = new ArrayList<Voto>();
 		votos.add(new Voto(6, "123.123", Estudios.NIVEL_ALTO));
 		votos.add(new Voto(3, "124.124", Estudios.NIVEL_BAJO));
 		votos.add(new Voto(9, "125.125", Estudios.NIVEL_MEDIO));
+		tema.setVotos(votos);
 		temaDao.create(tema);
 	}
 	
 	@After
-	public void fin(){
+	public void after(){
 		temaDao.deleteById(tema.getId());
 	}
 
