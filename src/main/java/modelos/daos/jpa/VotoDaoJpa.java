@@ -20,6 +20,7 @@ public class VotoDaoJpa extends GenericDaoJpa<Voto, Integer> implements VotoDao{
 		TemaDao temaDao = DaoFactory.getFactory().getTemaDao();
 		Tema tema = temaDao.read(101);
 		System.out.println(tema);
+
 	}
 	
 	public void crearVoto(){
