@@ -88,6 +88,10 @@ public class Tema {
 		this.votos = votos;
 	}
 	
+	public void putVoto(Voto voto){
+		this.votos.add(voto);
+	}
+	
 	public String toString(){
 		return "Tema: "+nombre+" \nPregunta: "+pregunta+" \n"+votos.toString();
 	}
