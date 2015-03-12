@@ -8,10 +8,10 @@
 <title>Votacion</title>
 </head>
 <body>
-	<c:set var="tema" scope="request" value="${tema}" />
-	<h1>${tema.nombre}</h1>
+	<c:set var="votar" scope="request" value="${votar}" />
+	<h1>${votar.tema.nombreTema}</h1>
 	
-	<h2>${tema.pregunta}</h2>
+	<h2>${votar.tema.pregunta}</h2>
 	
 	<p>
 		Valoracion: <select name="valoracion">
@@ -22,8 +22,8 @@
 	</p>
 	<p>
 		Nivel de estudios: <select name="estudios">
-			<c:forEach var="" items="${pView.roles}">
-				<option value="${rol}">${rol}</option>
+			<c:forEach var="nivel" items="${votar.estudios}">
+				<option value="${nivel}">${nivel}</option>
 			</c:forEach>
 		</select>
 	</p>
