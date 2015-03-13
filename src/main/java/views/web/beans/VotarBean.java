@@ -2,35 +2,27 @@ package views.web.beans;
 
 import org.apache.logging.log4j.LogManager;
 
+import controllers.VotarController;
 import modelos.entities.Tema;
+import modelos.entities.Voto;
 import modelos.utils.Estudios;
 
-public class VotarBean {
+public class VotarBean extends ViewBean{
 	
 	private String errorMsg;
 	
 	public static final Estudios[] estudios = Estudios.values();
 	
 	private Tema tema;
-	
-	private int valoracion;
-	
-	private int nivelEstudios;
 
-	public int getValoracion() {
-		return valoracion;
+	private Voto voto;
+
+	public Voto getVoto() {
+		return voto;
 	}
 
-	public void setValoracion(int valoracion) {
-		this.valoracion = valoracion;
-	}
-
-	public int getNivelEstudios() {
-		return nivelEstudios;
-	}
-
-	public void setNivelEstudios(int nivelEstudios) {
-		this.nivelEstudios = nivelEstudios;
+	public void setVoto(Voto voto) {
+		this.voto = voto;
 	}
 
 	public String getErrorMsg() {
@@ -50,7 +42,7 @@ public class VotarBean {
 	}
 
 	public String process() {
-        if (valoracion < 0 || valoracion > 10 || nivelEstudios < 0 || nivelEstudios > 2) {
+        if (voto.getValoracion()< 0 || voto.getValoracion() > 10) {
             LogManager.getLogger(VotarBean.class).debug(
                     "Los datos introducidos al votar no son correctos o faltan");
             return "home";
@@ -58,6 +50,15 @@ public class VotarBean {
         	return "votar";
         }
     }
+
+	public void findTema(int id) {
+		
+	}
+
+	public void añadirVoto() {
+		VotarController votarController = this.getFactory().getVotarController();
+		votarController.votar(voto);
+	}
 	
 	
 
