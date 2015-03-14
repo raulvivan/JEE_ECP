@@ -23,7 +23,6 @@ public class Dispatcher extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
     	String action = request.getPathInfo().substring(1);
 
         String view;
@@ -35,13 +34,16 @@ public class Dispatcher extends HttpServlet{
         	VotarBean votarBean = new VotarBean();
         	int id = Integer.parseInt(request.getParameter("id"));
         	votarBean.findTema(id);
-        	Tema tema = votarBean.getTema();
-        	request.setAttribute("tema", tema);
+        	request.setAttribute("estudios", Estudios.values());
+        	request.setAttribute("votar", votarBean);
         	view = action;
         	break;
+    	default:
+    		view = "home";
+    		break;
         }
 
-        this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + ".jsp")
+        this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
                 .forward(request, response);
 
     }
@@ -54,7 +56,7 @@ public class Dispatcher extends HttpServlet{
         switch (action) {
         case "añadirTema":
         	Tema tema = new Tema();
-        	tema.setNombre(request.getParameter("nombre"));
+        	tema.setNombre(request.getParameter("tema"));
         	tema.setPregunta(request.getParameter("pregunta"));
         	AñadirTemaBean añadirTema = new AñadirTemaBean();
         	añadirTema.setTema(tema);
@@ -70,6 +72,8 @@ public class Dispatcher extends HttpServlet{
         	VotarBean votarBean = new VotarBean();
         	votarBean.setVoto(voto);
         	votarBean.añadirVoto();
+        	
+        	break;
         }
 
         this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")

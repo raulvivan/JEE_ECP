@@ -2,6 +2,7 @@ package views.web.beans;
 
 import org.apache.logging.log4j.LogManager;
 
+import controllers.ControllerFactoryEJB;
 import controllers.VotarController;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
@@ -10,8 +11,6 @@ import modelos.utils.Estudios;
 public class VotarBean extends ViewBean{
 	
 	private String errorMsg;
-	
-	public static final Estudios[] estudios = Estudios.values();
 	
 	private Tema tema;
 
@@ -52,10 +51,13 @@ public class VotarBean extends ViewBean{
     }
 
 	public void findTema(int id) {
-		
+		this.setFactory(new ControllerFactoryEJB());
+		VotarController votarController = this.getFactory().getVotarController();
+		tema = votarController.findTema(id);
 	}
 
 	public void añadirVoto() {
+		this.setFactory(new ControllerFactoryEJB());
 		VotarController votarController = this.getFactory().getVotarController();
 		votarController.votar(voto);
 	}

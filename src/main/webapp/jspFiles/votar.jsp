@@ -9,25 +9,33 @@
 </head>
 <body>
 	<c:set var="votar" scope="request" value="${votar}" />
-	<h1>${votar.tema.nombreTema}</h1>
+	<c:set var="estudios" scope="request" value="${estudios}" />
+	<h1>Tema: ${votar.tema.nombre}</h1>
 	
-	<h2>${votar.tema.pregunta}</h2>
+	<h2>Pregunta: ${votar.tema.pregunta}</h2>
+	<form action="/JEE_ECP/jsp/votar" method="post">
+		<p>
+			Valoracion: <select name="valoracion">
+				<c:forEach begin="0" end="10" var="val">
+					<option value="${val}">${val}</option>
+				</c:forEach>
+			</select>
+		</p>
+		<p>
+			Nivel de estudios: <select name="estudios">
+				<c:forEach var="nivel" items="${estudios}">
+					<option value="${nivel}">${nivel}</option>
+				</c:forEach>
+			</select>
+		</p>
+		<p>
+			<input type="submit" value="Votar" />
+		</p>
+	</form>
 	
 	<p>
-		Valoracion: <select name="valoracion">
-			<c:forEach begin="0" end="10" var="val">
-				<option value="${val}">${val}</option>
-			</c:forEach>
-		</select>
-	</p>
-	<p>
-		Nivel de estudios: <select name="estudios">
-			<c:forEach var="nivel" items="${votar.estudios}">
-				<option value="${nivel}">${nivel}</option>
-			</c:forEach>
-		</select>
+		<a href="/JEE_ECP/jsp/añadirTema">Volver a Home</a>
 	</p>
 	
-
 </body>
 </html>

@@ -9,7 +9,7 @@
 <body>
 	<H1>Añadir Tema</H1>
 	
-	<form action="/listaVotaciones" method="post">
+	<form action="/JEE_ECP/jsp/añadirTema" method="post">
 		<p>
 			Tema: <input name="tema" type="text"
 				 />${pView.errorMsg}</p>
@@ -22,7 +22,7 @@
 	</form>
 	
 	<p>
-		<a href="/listaVotaciones">Volver a Home</a>
+		<a href="/JEE_ECP/jsp/añadirTema">Volver a Home</a>
 	</p>
 
 </body>

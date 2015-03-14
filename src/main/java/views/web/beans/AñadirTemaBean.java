@@ -1,6 +1,7 @@
 package views.web.beans;
 
 import controllers.AñadirTemaController;
+import controllers.ControllerFactoryEJB;
 import modelos.entities.Tema;
 
 public class AñadirTemaBean extends ViewBean{
@@ -16,6 +17,7 @@ public class AñadirTemaBean extends ViewBean{
 	}
 	
 	public void añadirTema(){
+		this.setFactory(new ControllerFactoryEJB());
 		AñadirTemaController añadirTemaController = this.getFactory().getAñadirTemaController();
 		añadirTemaController.añadirTema(tema);
 	}
