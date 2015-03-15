@@ -3,19 +3,18 @@ package controllers;
 import modelos.daos.DaoFactory;
 import modelos.daos.TemaDao;
 import modelos.daos.jpa.DaoJpaFactory;
-import modelos.entities.Tema;
 
-public class verVotacionesController {
+public class EliminarTemaController {
 	
-	TemaDao temaDao;
+	private TemaDao temaDao;
 	
-	public verVotacionesController(){
+	public EliminarTemaController(){
 		DaoFactory.setFactory(new DaoJpaFactory());
 		temaDao = DaoFactory.getFactory().getTemaDao();
 	}
 
-	public Tema findTema(int id) {
-		return temaDao.read(id);
+	public void eliminarTema(int id) {
+		temaDao.deleteById(id);
 	}
 
 }

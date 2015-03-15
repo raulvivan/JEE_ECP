@@ -7,9 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import controllers.verVotacionesController;
 import views.web.beans.AñadirTemaBean;
+import views.web.beans.EliminarTemaBean;
 import views.web.beans.ListaTemasBean;
 import views.web.beans.VerVotacionesBean;
 import views.web.beans.VotarBean;
@@ -49,7 +48,11 @@ public class Dispatcher extends HttpServlet{
         	request.setAttribute("votaciones", verVotaciones);
         	view = action;
         	break;
-        	
+        case "eliminarTema":
+        	id = Integer.parseInt(request.getParameter("id"));
+        	request.setAttribute("id", id);
+        	view = action;
+        	break;
     	default:
     		ListaTemasBean listaTemas = new ListaTemasBean();
         	listaTemas.findTemas();
@@ -90,6 +93,16 @@ public class Dispatcher extends HttpServlet{
         	votarBean.añadirVoto();
         	
         	break;
+        case "eliminarTema":
+        	if(Integer.parseInt(request.getParameter("identificador")) == EliminarTemaBean.IDENTIFICADOR){
+        		EliminarTemaBean eliminarTema = new EliminarTemaBean();
+        		eliminarTema.setId(Integer.parseInt(request.getParameter("id")));
+        		eliminarTema.eliminarTema();
+        	}else{
+        		view = "pantallaError";
+        	}
+        	
+        	
         }
 
         this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")

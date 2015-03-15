@@ -3,7 +3,7 @@ package views.web.beans;
 import java.util.List;
 
 import controllers.ControllerFactoryEJB;
-import controllers.verVotacionesController;
+import controllers.VerVotacionesController;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
 
@@ -61,7 +61,7 @@ public class VerVotacionesBean extends ViewBean{
 	
 	public void findTema(int id){
 		this.setFactory(new ControllerFactoryEJB());
-		verVotacionesController votacionesController = this.getFactory().getVotacionesController();
+		VerVotacionesController votacionesController = this.getFactory().getVotacionesController();
 		tema = votacionesController.findTema(id);
 		calcularParametros(tema.getVotos());
 	}
