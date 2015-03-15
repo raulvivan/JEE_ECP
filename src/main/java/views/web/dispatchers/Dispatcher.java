@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import views.web.beans.AñadirTemaBean;
+import views.web.beans.ListaTemasBean;
 import views.web.beans.VotarBean;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
@@ -39,8 +40,12 @@ public class Dispatcher extends HttpServlet{
         	view = action;
         	break;
     	default:
-    		view = "home";
-    		break;
+    		ListaTemasBean listaTemas = new ListaTemasBean();
+        	listaTemas.findTemas();
+        	System.out.println(listaTemas.getTemas());
+        	request.setAttribute("temas", listaTemas);
+        	view = "listaTemas";
+        	break;
         }
 
         this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
@@ -52,8 +57,8 @@ public class Dispatcher extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	String action = request.getPathInfo().substring(1);
-        String view = "home";
-        switch (action) {
+        String view = "listaTemas";
+        switch (action) {	
         case "añadirTema":
         	Tema tema = new Tema();
         	tema.setNombre(request.getParameter("tema"));

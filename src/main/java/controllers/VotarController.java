@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import modelos.daos.DaoFactory;
 import modelos.daos.TemaDao;
 import modelos.daos.VotoDao;
@@ -24,6 +26,10 @@ public class VotarController {
 
 	public Tema findTema(int id) {
 		return temaDao.read(id);
+	}
+
+	public List<Tema> findTemas() {
+		return temaDao.findAll();
 	}
 
 }

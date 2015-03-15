@@ -6,7 +6,6 @@ import controllers.ControllerFactoryEJB;
 import controllers.VotarController;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
-import modelos.utils.Estudios;
 
 public class VotarBean extends ViewBean{
 	
