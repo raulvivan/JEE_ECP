@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controllers.verVotacionesController;
 import views.web.beans.AñadirTemaBean;
 import views.web.beans.ListaTemasBean;
+import views.web.beans.VerVotacionesBean;
 import views.web.beans.VotarBean;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
@@ -27,18 +29,27 @@ public class Dispatcher extends HttpServlet{
     	String action = request.getPathInfo().substring(1);
 
         String view;
+        int id;
         switch (action) {
         case "añadirTema": 
         	view = action;
         	break;
         case "votar":
         	VotarBean votarBean = new VotarBean();
-        	int id = Integer.parseInt(request.getParameter("id"));
+        	id = Integer.parseInt(request.getParameter("id"));
         	votarBean.findTema(id);
         	request.setAttribute("estudios", Estudios.values());
         	request.setAttribute("votar", votarBean);
         	view = action;
         	break;
+        case "verVotaciones":
+        	VerVotacionesBean verVotaciones = new VerVotacionesBean();
+        	id = Integer.parseInt(request.getParameter("id"));
+        	verVotaciones.findTema(id);
+        	request.setAttribute("votaciones", verVotaciones);
+        	view = action;
+        	break;
+        	
     	default:
     		ListaTemasBean listaTemas = new ListaTemasBean();
         	listaTemas.findTemas();

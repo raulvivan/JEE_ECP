@@ -7,10 +7,13 @@ public class ControllerFactoryEJB extends ControllerFactory {
     private AñadirTemaController añadirTema;
     
     private VotarController votar;
+    
+    private verVotacionesController verVotaciones;
 
     public ControllerFactoryEJB() {
         this.añadirTema = new AñadirTemaController();
         this.votar = new VotarController();
+        this.verVotaciones = new verVotacionesController();
     }
 
 	@Override
@@ -21,6 +24,11 @@ public class ControllerFactoryEJB extends ControllerFactory {
 	@Override
 	public VotarController getVotarController() {
 		return votar;
+	}
+
+	@Override
+	public verVotacionesController getVotacionesController() {
+		return verVotaciones;
 	}
 
     
