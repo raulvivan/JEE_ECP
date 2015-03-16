@@ -1,25 +1,22 @@
 package controllers;
 
+import java.util.List;
+
 import modelos.daos.DaoFactory;
 import modelos.daos.TemaDao;
 import modelos.daos.jpa.DaoJpaFactory;
 import modelos.entities.Tema;
 
-public class VotarController{
-	
+public class MostrarTemaController {
+
 	private TemaDao temaDao;
 	
-	public VotarController(){
+	public MostrarTemaController(){
 		DaoFactory.setFactory(new DaoJpaFactory());
 		temaDao = DaoFactory.getFactory().getTemaDao();
 	}
-
-	public void votar(Tema tema) {
-		temaDao.update(tema);
-	}
 	
-	public Tema findTema(int id) {
-		return temaDao.read(id);
-	} 
-
+	public List<Tema> findTemas() {
+		return temaDao.findAll();
+	}
 }

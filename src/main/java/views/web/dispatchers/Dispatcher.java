@@ -89,6 +89,7 @@ public class Dispatcher extends HttpServlet{
         	voto.setEstudios(estudios[Integer.parseInt(request.getParameter("estudios"))]);
         	voto.setIp("127.0.0.1");
         	VotarBean votarBean = new VotarBean();
+        	votarBean.findTema(Integer.parseInt(request.getParameter("estudios")));
         	votarBean.setVoto(voto);
         	votarBean.añadirVoto();
         	

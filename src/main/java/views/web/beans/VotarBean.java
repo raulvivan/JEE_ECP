@@ -58,7 +58,8 @@ public class VotarBean extends ViewBean{
 	public void añadirVoto() {
 		this.setFactory(new ControllerFactoryEJB());
 		VotarController votarController = this.getFactory().getVotarController();
-		votarController.votar(voto);
+		tema.putVoto(voto);
+		votarController.votar(tema);
 	}
 	
 	

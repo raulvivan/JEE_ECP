@@ -3,7 +3,7 @@ package views.web.beans;
 import java.util.List;
 
 import controllers.ControllerFactoryEJB;
-import controllers.VotarController;
+import controllers.MostrarTemaController;
 import modelos.entities.Tema;
 
 public class ListaTemasBean extends ViewBean{
@@ -20,8 +20,8 @@ public class ListaTemasBean extends ViewBean{
 	
 	public void findTemas(){
 		this.setFactory(new ControllerFactoryEJB());
-		VotarController votarController = this.getFactory().getVotarController();
-		temas = votarController.findTemas();
+		MostrarTemaController mostrarController = this.getFactory().getMostrarTemaController();
+		temas = mostrarController.findTemas();
 
 		
 	}

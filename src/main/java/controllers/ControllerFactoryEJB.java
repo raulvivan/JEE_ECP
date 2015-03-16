@@ -11,12 +11,15 @@ public class ControllerFactoryEJB extends ControllerFactory {
     private VerVotacionesController verVotaciones;
     
     private EliminarTemaController eliminarTema;
+    
+    private MostrarTemaController mostrarTema;
 
     public ControllerFactoryEJB() {
         this.añadirTema = new AñadirTemaController();
         this.votar = new VotarController();
         this.verVotaciones = new VerVotacionesController();
         this.eliminarTema = new EliminarTemaController();
+        this.mostrarTema = new MostrarTemaController();
     }
 
 	@Override
@@ -37,6 +40,11 @@ public class ControllerFactoryEJB extends ControllerFactory {
 	@Override
 	public EliminarTemaController getEliminarTemaController() {
 		return eliminarTema;
+	}
+
+	@Override
+	public MostrarTemaController getMostrarTemaController() {
+		return mostrarTema;
 	}
 
     
