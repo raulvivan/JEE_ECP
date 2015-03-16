@@ -37,7 +37,7 @@ public class Dispatcher extends HttpServlet{
         	VotarBean votarBean = new VotarBean();
         	id = Integer.parseInt(request.getParameter("id"));
         	votarBean.findTema(id);
-        	request.setAttribute("estudios", Estudios.values());
+        	votarBean.setEstudios(Estudios.values());
         	request.setAttribute("votar", votarBean);
         	view = action;
         	break;

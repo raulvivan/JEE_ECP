@@ -9,7 +9,6 @@
 </head>
 <body>
 	<c:set var="votar" scope="request" value="${votar}" />
-	<c:set var="estudios" scope="request" value="${estudios}" />
 	<h1>Tema: ${votar.tema.nombre}</h1>
 	
 	<h2>Pregunta: ${votar.tema.pregunta}</h2>
@@ -23,7 +22,7 @@
 		</p>
 		<p>
 			Nivel de estudios: <select name="estudios">
-				<c:forEach var="nivel" items="${estudios}">
+				<c:forEach var="nivel" items="${votar.estudios}">
 					<option value="${nivel}">${nivel}</option>
 				</c:forEach>
 			</select>

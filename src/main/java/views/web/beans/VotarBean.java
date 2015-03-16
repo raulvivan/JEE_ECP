@@ -6,6 +6,7 @@ import controllers.ControllerFactoryEJB;
 import controllers.VotarController;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
+import modelos.utils.Estudios;
 
 public class VotarBean extends ViewBean{
 	
@@ -14,6 +15,8 @@ public class VotarBean extends ViewBean{
 	private Tema tema;
 
 	private Voto voto;
+	
+	private Estudios[] estudios;
 
 	public Voto getVoto() {
 		return voto;
@@ -37,6 +40,14 @@ public class VotarBean extends ViewBean{
 
 	public void setTema(Tema tema) {
 		this.tema = tema;
+	}
+
+	public Estudios[] getEstudios() {
+		return estudios;
+	}
+
+	public void setEstudios(Estudios[] estudios) {
+		this.estudios = estudios;
 	}
 
 	public String process() {
