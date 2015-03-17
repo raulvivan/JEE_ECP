@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>AñadirTema</title>
+</head>
+<body>
+	<H1>Añadir Tema</H1>
+	
+	<h:form>
+		<p>Tema: <h:inputText value="#{añadirTemaBean.tema.nombre}"/></p>
+		<p>Pregunta: <h:inputText value="#{añadirTemaBean.tema.pregunta}"/></p>
+		
+		<h:commandButton value="Guardar" action="#{añadirTemaBean.process}"/>	
+	</h:form>
+	
+	<h:link value="Volver" outcome="listaTemas"></h:link>
+
+</body>
+</html>
