@@ -2,7 +2,6 @@ package views.web.beans;
 
 import java.util.List;
 
-import controllers.ControllerFactoryEJB;
 import controllers.VerVotacionesController;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
@@ -11,6 +10,8 @@ public class VerVotacionesBean extends ViewBean{
 	
 	private Tema tema;
 	
+	private int id;
+	
 	private int cantidad;
 	
 	private int nivelBajo;
@@ -18,6 +19,8 @@ public class VerVotacionesBean extends ViewBean{
 	private int nivelMedio;
 	
 	private int nivelAlto;
+	
+	private VerVotacionesController votacionesController;
 
 	public Tema getTema() {
 		return tema;
@@ -59,9 +62,15 @@ public class VerVotacionesBean extends ViewBean{
 		this.nivelAlto = nivelAlto;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void findTema(int id){
-		this.setFactory(new ControllerFactoryEJB());
-		VerVotacionesController votacionesController = this.getFactory().getVotacionesController();
 		tema = votacionesController.findTema(id);
 		calcularParametros(tema.getVotos());
 	}
@@ -105,6 +114,11 @@ public class VerVotacionesBean extends ViewBean{
 			this.nivelAlto = valoracionNivelAlto/cantidadNivelAlto;
 		else
 			this.nivelAlto = 0;
+	}
+
+	public void update() {
+		votacionesController = this.getFactory().getVotacionesController();
+		this.findTema(this.id);
 	}
 
 }

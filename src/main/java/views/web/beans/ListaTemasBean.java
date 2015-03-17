@@ -2,13 +2,22 @@ package views.web.beans;
 
 import java.util.List;
 
-import controllers.ControllerFactoryEJB;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+
 import controllers.MostrarTemaController;
 import modelos.entities.Tema;
 
+@ManagedBean
 public class ListaTemasBean extends ViewBean{
 	
 	private List<Tema> temas;
+	
+	private MostrarTemaController mostrarController;
+	
+	public ListaTemasBean(){
+		
+	}
 
 	public List<Tema> getTemas() {
 		return temas;
@@ -18,12 +27,14 @@ public class ListaTemasBean extends ViewBean{
 		this.temas = temas;
 	}
 	
+	public void update(){		
+		mostrarController = this.getFactory().getMostrarTemaController();
+		this.findTemas();
+	}
+	
+	@PostConstruct
 	public void findTemas(){
-		this.setFactory(new ControllerFactoryEJB());
-		MostrarTemaController mostrarController = this.getFactory().getMostrarTemaController();
-		temas = mostrarController.findTemas();
-
-		
+		temas = mostrarController.findTemas();	
 	}
 
 }

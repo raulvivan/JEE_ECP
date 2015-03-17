@@ -1,8 +1,5 @@
 package views.web.beans;
 
-import org.apache.logging.log4j.LogManager;
-
-import controllers.ControllerFactoryEJB;
 import controllers.VotarController;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
@@ -10,11 +7,13 @@ import modelos.utils.Estudios;
 
 public class VotarBean extends ViewBean{
 	
-	private String errorMsg;
+	private int id;
 	
 	private Tema tema;
 
 	private Voto voto;
+	
+	private VotarController votarController;
 	
 	private Estudios[] estudios;
 
@@ -24,14 +23,6 @@ public class VotarBean extends ViewBean{
 
 	public void setVoto(Voto voto) {
 		this.voto = voto;
-	}
-
-	public String getErrorMsg() {
-		return errorMsg;
-	}
-
-	public void setErrorMsg(String errorMsg) {
-		this.errorMsg = errorMsg;
 	}
 
     public Tema getTema() {
@@ -49,26 +40,32 @@ public class VotarBean extends ViewBean{
 	public void setEstudios(Estudios[] estudios) {
 		this.estudios = estudios;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
-	public String process() {
-        if (voto.getValoracion()< 0 || voto.getValoracion() > 10) {
-            LogManager.getLogger(VotarBean.class).debug(
-                    "Los datos introducidos al votar no son correctos o faltan");
-            return "home";
-        }else{
-        	return "votar";
-        }
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	public void findTema(int id) {
-		this.setFactory(new ControllerFactoryEJB());
-		VotarController votarController = this.getFactory().getVotarController();
-		tema = votarController.findTema(id);
+	public void update(){
+		votarController = this.getFactory().getVotarController();
+		this.estudios = Estudios.values();
+		this.findTema();
+	}
+	
+	public void process(){
+		votarController = this.getFactory().getVotarController();
+		this.findTema();
+		this.añadirVoto();
+	}
+
+	public void findTema() {
+		tema = votarController.findTema(this.id);
 	}
 
 	public void añadirVoto() {
-		this.setFactory(new ControllerFactoryEJB());
-		VotarController votarController = this.getFactory().getVotarController();
 		tema.putVoto(voto);
 		votarController.votar(tema);
 	}

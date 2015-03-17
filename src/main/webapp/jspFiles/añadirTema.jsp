@@ -12,17 +12,17 @@
 	<form action="/JEE_ECP/jsp/añadirTema" method="post">
 		<p>
 			Tema: <input name="tema" type="text"
-				 />${pView.errorMsg}</p>
+				 /></p>
 		<p>
 			Pregunta: <input name="pregunta" type="text"
-				 />${pView.errorMsg}</p>
+				 /></p>
 		<p>
 			<input type="submit" value="Añadir" />
 		</p>
 	</form>
 	
 	<p>
-		<a href="/JEE_ECP/jsp/añadirTema">Volver a Home</a>
+		<a href="/JEE_ECP/jsp/listaTemas">Volver a Home</a>
 	</p>
 
 </body>

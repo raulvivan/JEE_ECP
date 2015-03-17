@@ -10,6 +10,7 @@
 <body>
 	<h1>Lista Temas</h1>
 	<c:set var="temas" scope="request" value="${temas}" />
+	${temas.update()}
 	
 	<a href="/JEE_ECP/jsp/añadirTema">Añadir tema</a>
 	

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>Lista de temas</title>
+</head>
+<body>
+	<H1>Lista de temas</H1>
+	
+	<h:link value="AñadirTema" outcome="añadirTema"></h:link>
+	
+	<ui:repeat value="#{listaTemasBean.temas}" var="tema" >
+		<p>#{tema.nombre}  <h:link value="Ver votaciones" outcome="verVotaciones">
+								<f:param name="id" value="#{tema.id}" />
+							</h:link>
+							<h:link value="Eliminar" outcome="eliminarTema">
+								<f:param name="id" value="#{tema.id}" />
+							</h:link>  
+							<h:link value="Votar" outcome="votarTema">
+								<f:param name="id" value="#{tema.id}" />
+							</h:link></p>
+	</ui:repeat>
+	
+
+</body>
+</html>

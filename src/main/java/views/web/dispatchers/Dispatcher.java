@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import controllers.ControllerFactoryEJB;
 import views.web.beans.AñadirTemaBean;
 import views.web.beans.EliminarTemaBean;
 import views.web.beans.ListaTemasBean;
@@ -22,41 +24,48 @@ public class Dispatcher extends HttpServlet{
 
     private static String PATH_ROOT_VIEW = "/jspFiles/";
 
+	private ControllerFactoryEJB controllerFactoryEJB;
+    
+    
+
     @Override
+	public void init() throws ServletException {
+    	controllerFactoryEJB = new ControllerFactoryEJB();
+	}
+
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	String action = request.getPathInfo().substring(1);
 
         String view;
-        int id;
         switch (action) {
         case "añadirTema": 
         	view = action;
         	break;
         case "votar":
         	VotarBean votarBean = new VotarBean();
-        	id = Integer.parseInt(request.getParameter("id"));
-        	votarBean.findTema(id);
-        	votarBean.setEstudios(Estudios.values());
+        	votarBean.setId(Integer.parseInt(request.getParameter("id")));
+        	votarBean.setFactory(controllerFactoryEJB);
         	request.setAttribute("votar", votarBean);
         	view = action;
         	break;
         case "verVotaciones":
         	VerVotacionesBean verVotaciones = new VerVotacionesBean();
-        	id = Integer.parseInt(request.getParameter("id"));
-        	verVotaciones.findTema(id);
+        	verVotaciones.setId(Integer.parseInt(request.getParameter("id")));
+        	verVotaciones.setFactory(controllerFactoryEJB);
         	request.setAttribute("votaciones", verVotaciones);
         	view = action;
         	break;
         case "eliminarTema":
-        	id = Integer.parseInt(request.getParameter("id"));
-        	request.setAttribute("id", id);
+        	EliminarTemaBean eliminarTemaBean = new EliminarTemaBean();
+        	eliminarTemaBean.setId(Integer.parseInt(request.getParameter("id")));
+        	request.setAttribute("eliminar", eliminarTemaBean);
         	view = action;
         	break;
     	default:
     		ListaTemasBean listaTemas = new ListaTemasBean();
-        	listaTemas.findTemas();
-        	System.out.println(listaTemas.getTemas());
+    		listaTemas.setFactory(controllerFactoryEJB);
         	request.setAttribute("temas", listaTemas);
         	view = "listaTemas";
         	break;
@@ -79,31 +88,38 @@ public class Dispatcher extends HttpServlet{
         	tema.setPregunta(request.getParameter("pregunta"));
         	AñadirTemaBean añadirTema = new AñadirTemaBean();
         	añadirTema.setTema(tema);
+        	añadirTema.setFactory(controllerFactoryEJB);
+        	añadirTema.process();
         	añadirTema.añadirTema();
 
         	break;
         case "votar":
         	Voto voto = new Voto();
         	voto.setValoracion(Integer.parseInt(request.getParameter("valoracion")));
-        	Estudios[] estudios = Estudios.values();
-        	voto.setEstudios(estudios[Integer.parseInt(request.getParameter("estudios"))]);
-        	voto.setIp("127.0.0.1");
+        	voto.setEstudios(Estudios.values()[Integer.parseInt(request.getParameter("estudios"))]);
+        	voto.setIp(request.getRemoteAddr());
         	VotarBean votarBean = new VotarBean();
-        	votarBean.findTema(Integer.parseInt(request.getParameter("estudios")));
         	votarBean.setVoto(voto);
-        	votarBean.añadirVoto();
+        	votarBean.setId(Integer.parseInt(request.getParameter("id")));
+        	votarBean.setFactory(controllerFactoryEJB);
+        	votarBean.process();
         	
         	break;
         case "eliminarTema":
         	if(Integer.parseInt(request.getParameter("identificador")) == EliminarTemaBean.IDENTIFICADOR){
         		EliminarTemaBean eliminarTema = new EliminarTemaBean();
         		eliminarTema.setId(Integer.parseInt(request.getParameter("id")));
-        		eliminarTema.eliminarTema();
+        		eliminarTema.setFactory(controllerFactoryEJB);
+        		eliminarTema.process();
         	}else{
         		view = "pantallaError";
         	}
-        	
-        	
+        }
+        
+        if(view.equals("listaTemas")){
+        	ListaTemasBean listaTemas = new ListaTemasBean();
+    		listaTemas.setFactory(controllerFactoryEJB);
+        	request.setAttribute("temas", listaTemas);
         }
 
         this.getServletContext().getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")

@@ -1,11 +1,12 @@
 package views.web.beans;
 
-import controllers.ControllerFactoryEJB;
 import controllers.EliminarTemaController;
 
 public class EliminarTemaBean extends ViewBean{
 	
 	private int id;
+	
+	private EliminarTemaController eliminarTemaController;
 	
 	public static final int IDENTIFICADOR = 666;
 
@@ -18,9 +19,12 @@ public class EliminarTemaBean extends ViewBean{
 	}
 	
 	public void eliminarTema(){
-		this.setFactory(new ControllerFactoryEJB());
-		EliminarTemaController eliminarTemaController = this.getFactory().getEliminarTemaController();
 		eliminarTemaController.eliminarTema(this.id);
+	}
+
+	public void process() {
+		eliminarTemaController = this.getFactory().getEliminarTemaController();
+		this.eliminarTema();
 	}
 
 }

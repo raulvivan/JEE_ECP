@@ -9,6 +9,7 @@
 </head>
 <body>
 	<c:set var="votar" scope="request" value="${votar}" />
+	${votar.update()}
 	<h1>Tema: ${votar.tema.nombre}</h1>
 	
 	<h2>Pregunta: ${votar.tema.pregunta}</h2>
@@ -27,6 +28,7 @@
 				</c:forEach>
 			</select>
 		</p>
+		<input name="id" type="hidden" value="${votar.tema.id}"/>
 		<p>
 			<input type="submit" value="Votar" />
 		</p>

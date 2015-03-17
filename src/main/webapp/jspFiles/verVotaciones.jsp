@@ -10,6 +10,7 @@
 <body>
 	<h1>Ver votaciones</h1>
 	<c:set var="votaciones" scope="request" value="${votaciones}" />
+	${votaciones.update()}
 	
 	<h2>${votacion.tema.nombre}</h2>
 	<p>Cantidad de votos: ${votaciones.cantidad}</p>
