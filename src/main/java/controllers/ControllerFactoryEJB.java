@@ -1,7 +1,10 @@
 package controllers;
 
-//@ManagedBean(name = "controllerFactory")
-//@SessionScoped
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+
+@ManagedBean(name = "controllerFactory")
+@ApplicationScoped
 public class ControllerFactoryEJB extends ControllerFactory {
 
     private AñadirTemaController añadirTema;

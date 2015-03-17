@@ -10,6 +10,8 @@
 <body>
 	<H1>Lista de temas</H1>
 	
+	#{listaTemas.update()}
+	
 	<h:link value="AñadirTema" outcome="añadirTema"></h:link>
 	
 	<ui:repeat value="#{listaTemasBean.temas}" var="tema" >
