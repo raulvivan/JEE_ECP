@@ -9,16 +9,16 @@
 </head>
 <body>
 	<h1>EliminarTema</h1>
-	<c:set var="id" scope="request" value="${id}" />
+	<c:set var="eliminar" scope="request" value="${eliminar}" />
 	
 	<form action="/JEE_ECP/jsp/eliminarTema" method="post">
 		<p>
 			Identificador: <input name="identificador" type="text"
 				 /></p>
 		<p>
-		<input name="id" type="hidden" value="${id}"/>
+		<input name="id" type="hidden" value="${eliminar.id}"/>
 		<p>
-			<input type="submit" value="Añadir" />
+			<input type="submit" value="Eliminar" />
 		</p>
 		
 		<a href="/JEE_ECP/jsp/listaTemas">Volver</a>

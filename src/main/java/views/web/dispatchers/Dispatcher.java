@@ -96,7 +96,7 @@ public class Dispatcher extends HttpServlet{
         case "votar":
         	Voto voto = new Voto();
         	voto.setValoracion(Integer.parseInt(request.getParameter("valoracion")));
-        	voto.setEstudios(Estudios.values()[Integer.parseInt(request.getParameter("estudios"))]);
+        	voto.setEstudios(Estudios.valueOf(request.getParameter("estudios")));
         	voto.setIp(request.getRemoteAddr());
         	VotarBean votarBean = new VotarBean();
         	votarBean.setVoto(voto);
