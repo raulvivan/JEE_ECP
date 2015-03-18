@@ -13,11 +13,10 @@
 	${votaciones.update()}
 	
 	<h2>${votacion.tema.nombre}</h2>
-	<p>Cantidad de votos: ${votaciones.cantidad}</p>
 	
-	<p>Valoracion media nivel bajo de estudios: ${votaciones.nivelBajo}</p>
-	<p>Valoracion media nivel medio de estudios: ${votaciones.nivelMedio}</p>
-	<p>Valoracion media nivel alto de estudios: ${votaciones.nivelAlto}</p>
+	<c:forEach var="parametro" items="${votaciones.parametros}">
+		<p>${parametro.key}: ${parametro.value}</p>
+	</c:forEach>
 	
 	<a href="/JEE_ECP/jsp/listaTemas">Volver</a>
 

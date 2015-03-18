@@ -47,6 +47,7 @@ public class Dispatcher extends HttpServlet{
         	VotarBean votarBean = new VotarBean();
         	votarBean.setId(Integer.parseInt(request.getParameter("id")));
         	votarBean.setFactory(controllerFactoryEJB);
+        	votarBean.update();
         	request.setAttribute("votar", votarBean);
         	view = action;
         	break;
@@ -54,6 +55,7 @@ public class Dispatcher extends HttpServlet{
         	VerVotacionesBean verVotaciones = new VerVotacionesBean();
         	verVotaciones.setId(Integer.parseInt(request.getParameter("id")));
         	verVotaciones.setFactory(controllerFactoryEJB);
+        	verVotaciones.update();
         	request.setAttribute("votaciones", verVotaciones);
         	view = action;
         	break;
@@ -66,6 +68,7 @@ public class Dispatcher extends HttpServlet{
     	default:
     		ListaTemasBean listaTemas = new ListaTemasBean();
     		listaTemas.setFactory(controllerFactoryEJB);
+    		listaTemas.update();
         	request.setAttribute("temas", listaTemas);
         	view = "listaTemas";
         	break;
