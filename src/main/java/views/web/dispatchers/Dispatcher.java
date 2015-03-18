@@ -92,9 +92,7 @@ public class Dispatcher extends HttpServlet{
         	AñadirTemaBean añadirTema = new AñadirTemaBean();
         	añadirTema.setTema(tema);
         	añadirTema.setFactory(controllerFactoryEJB);
-        	añadirTema.process();
-        	añadirTema.añadirTema();
-
+        	view = añadirTema.process();
         	break;
         case "votar":
         	Voto voto = new Voto();
@@ -105,7 +103,7 @@ public class Dispatcher extends HttpServlet{
         	votarBean.setVoto(voto);
         	votarBean.setId(Integer.parseInt(request.getParameter("id")));
         	votarBean.setFactory(controllerFactoryEJB);
-        	votarBean.process();
+        	view = votarBean.process();
         	
         	break;
         case "eliminarTema":

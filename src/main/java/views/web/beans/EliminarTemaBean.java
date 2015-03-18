@@ -1,6 +1,5 @@
 package views.web.beans;
 
-import modelos.entities.Tema;
 import controllers.EliminarTemaController;
 
 public class EliminarTemaBean extends ViewBean{
@@ -29,18 +28,10 @@ public class EliminarTemaBean extends ViewBean{
 		this.identificacion = identificacion;
 	}
 
-	public Tema findTema(){
-		return eliminarTemaController.findTema(this.id);
-	}
-	
-	public void eliminarTema(){
-		eliminarTemaController.eliminarTema(this.findTema());
-	}
-
 	public String process() {
 		if(this.identificacion == IDENTIFICADOR){
 			eliminarTemaController = this.getFactory().getEliminarTemaController();
-			this.eliminarTema();
+			eliminarTemaController.eliminarTema(eliminarTemaController.findTema(this.id));
 			return "listaTemas";
 		}else{
 			return "pantallaError";

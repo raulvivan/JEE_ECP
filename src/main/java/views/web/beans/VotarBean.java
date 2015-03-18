@@ -55,10 +55,11 @@ public class VotarBean extends ViewBean{
 		this.findTema();
 	}
 	
-	public void process(){
+	public String process(){
 		votarController = this.getFactory().getVotarController();
 		this.findTema();
 		this.añadirVoto();
+		return "listaTemas";
 	}
 
 	public void findTema() {

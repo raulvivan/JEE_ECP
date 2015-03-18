@@ -1,11 +1,9 @@
 package views.web.beans;
 
-import java.util.List;
 import java.util.Map;
 
 import controllers.VerVotacionesController;
 import modelos.entities.Tema;
-import modelos.entities.Voto;
 
 public class VerVotacionesBean extends ViewBean{
 	
@@ -41,18 +39,10 @@ public class VerVotacionesBean extends ViewBean{
 		this.id = id;
 	}
 
-	public void findTema(int id){
-		tema = verVotacionesController.findTema(id);
-		this.parametros = calcularParametros(tema.getVotos());
-	}
-	
-	public Map<String, Integer> calcularParametros(List<Voto> votos){
-		return verVotacionesController.calcularParametros(votos);
-	}
-
 	public void update() {
 		verVotacionesController = this.getFactory().getVotacionesController();
-		this.findTema(this.id);
+		tema = verVotacionesController.findTema(id);
+		this.parametros = verVotacionesController.calcularParametros(tema.getVotos());
 	}
 
 }
