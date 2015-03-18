@@ -109,14 +109,11 @@ public class Dispatcher extends HttpServlet{
         	
         	break;
         case "eliminarTema":
-        	if(Integer.parseInt(request.getParameter("identificador")) == EliminarTemaBean.IDENTIFICADOR){
         		EliminarTemaBean eliminarTema = new EliminarTemaBean();
         		eliminarTema.setId(Integer.parseInt(request.getParameter("id")));
+        		eliminarTema.setIdentificacion(Integer.parseInt(request.getParameter("identificador")));
         		eliminarTema.setFactory(controllerFactoryEJB);
-        		eliminarTema.process();
-        	}else{
-        		view = "pantallaError";
-        	}
+        		view = eliminarTema.process();
         }
         
         if(view.equals("listaTemas")){
