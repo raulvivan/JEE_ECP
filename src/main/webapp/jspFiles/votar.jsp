@@ -35,7 +35,7 @@
 	</form>
 	
 	<p>
-		<a href="/JEE_ECP/jsp/añadirTema">Volver a Home</a>
+		<a href="/JEE_ECP/jsp/listaTemas">Volver a Home</a>
 	</p>
 	
 </body>

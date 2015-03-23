@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>Ver Votaciones</title>
+</head>
+<body>
+	<H1>Ver votaciones</H1>
+	
+	<H2>#{verVotacionesBean.tema.nombre}</H2>
+	
+	<c:forEach items="#{verVotacionesBean.parametros}" var="parametro" >
+		<p>#{parametro.key}: #{parametro.value}</p>
+	</c:forEach>
+	
+	<h:link value="Volver" outcome="listaTemas"></h:link>
+
+</body>
+</html>

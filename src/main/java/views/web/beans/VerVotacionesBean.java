@@ -2,13 +2,19 @@ package views.web.beans;
 
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+
 import controllers.VerVotacionesController;
 import modelos.entities.Tema;
 
+@ManagedBean
 public class VerVotacionesBean extends ViewBean{
 	
 	private Tema tema;
 	
+	@ManagedProperty(value = "#{param.id}")
 	private int id;
 	
 	private Map<String, Integer> parametros;
@@ -39,6 +45,7 @@ public class VerVotacionesBean extends ViewBean{
 		this.id = id;
 	}
 
+	@PostConstruct
 	public void update() {
 		verVotacionesController = this.getFactory().getVotacionesController();
 		tema = verVotacionesController.findTema(id);

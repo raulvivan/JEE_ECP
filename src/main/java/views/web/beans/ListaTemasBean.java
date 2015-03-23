@@ -10,10 +10,6 @@ import modelos.entities.Tema;
 @ManagedBean
 public class ListaTemasBean extends ViewBean{
 	private List<Tema> temas;
-		
-	public ListaTemasBean(){
-		
-	}
 
 	public List<Tema> getTemas() {
 		return temas;
@@ -24,7 +20,7 @@ public class ListaTemasBean extends ViewBean{
 	}
 	@PostConstruct
 	public void update(){		
-		this.getFactory().getMostrarTemaController().findTemas();
+		temas = this.getFactory().getMostrarTemaController().findTemas();
 	}
 
 }
