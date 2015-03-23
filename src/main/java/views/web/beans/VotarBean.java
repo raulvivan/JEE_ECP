@@ -1,12 +1,18 @@
 package views.web.beans;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+
 import controllers.VotarController;
 import modelos.entities.Tema;
 import modelos.entities.Voto;
 import modelos.utils.Estudios;
 
+@ManagedBean
 public class VotarBean extends ViewBean{
 	
+	@ManagedProperty(value = "#{param.id}")
 	private int id;
 	
 	private Tema tema;
@@ -16,6 +22,10 @@ public class VotarBean extends ViewBean{
 	private VotarController votarController;
 	
 	private Estudios[] estudios;
+	
+	public VotarBean(){
+		voto = new Voto();
+	}
 
 	public Voto getVoto() {
 		return voto;
@@ -49,6 +59,7 @@ public class VotarBean extends ViewBean{
 		this.id = id;
 	}
 
+	@PostConstruct
 	public void update(){
 		votarController = this.getFactory().getVotarController();
 		this.estudios = Estudios.values();

@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:c="http://java.sun.com/jstl/core"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
 <title>Lista de temas</title>
@@ -21,7 +20,7 @@
 							<h:link value="Eliminar" outcome="eliminarTema" includeViewParams="true">
 								<f:param name="id" value="#{tema.id}" />
 							</h:link>  
-							<h:link value="Votar" outcome="votarTema" includeViewParams="true">
+							<h:link value="Votar" outcome="votar" includeViewParams="true">
 								<f:param name="id" value="#{tema.id}" />
 							</h:link></p>
 	</ui:repeat>
