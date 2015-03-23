@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>Votar</title>
+</head>
+<body>
+	<H1>Tema: #{votarBean.tema.nombre}</H1>
+
+	<H2>Pregunta: #{votarBean.tema.pregunta}</H2>
+
+	<h:form>
+		<p>
+			Valoracion: <h:selectOneMenu value="#{votarBean.voto.valoracion}">
+				<c:forEach begin="0" end="10" var="val">
+					<f:selectItem itemValue="#{val}" itemLabel="#{val}" />
+				</c:forEach>
+			</h:selectOneMenu>
+		</p>
+
+		<p>
+			Nivel de estudios: <h:selectOneMenu value="#{votarBean.voto.estudios}">
+				<c:forEach items="#{votarBean.estudios}" var="val" >
+					<f:selectItem itemValue="#{val}" itemLabel="#{val}" />
+				</c:forEach>
+			</h:selectOneMenu>
+		</p>
+		
+		<h:commandButton value="Votar" action="#{votarBean.process}">
+			<f:param name="id" value="#{votarBean.id}" />
+		</h:commandButton>	
+	</h:form>
+
+	<h:link value="Volver" outcome="listaTemas"></h:link>
+
+</body>
+</html>

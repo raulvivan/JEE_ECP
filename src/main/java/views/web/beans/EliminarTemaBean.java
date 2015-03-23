@@ -1,9 +1,14 @@
 package views.web.beans;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+
 import controllers.EliminarTemaController;
 
+@ManagedBean
 public class EliminarTemaBean extends ViewBean{
 	
+	@ManagedProperty(value = "#{param.id}")
 	private int id;
 	
 	private int identificacion;
