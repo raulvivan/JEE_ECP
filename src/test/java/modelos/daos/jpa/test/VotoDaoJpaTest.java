@@ -43,7 +43,10 @@ public class VotoDaoJpaTest {
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
+		Voto voto2 = new Voto(5, "127.0.0.1", Estudios.NIVEL_ALTO);
+		voto2.setId(voto.getId());
+		votoDao.update(voto2);
+		assertEquals(voto2, votoDao.read(voto.getId()));	
 	}
 
 	@Test
