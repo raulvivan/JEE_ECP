@@ -22,11 +22,6 @@ public class TemaDaoJpaTest {
 	private TemaDao temaDao;
 	private Tema tema;
 	
-	@BeforeClass
-	public static void beforeClass(){
-		
-	}
-	
 	@Before
 	public void before(){
 		DaoFactory.setFactory(new DaoJpaFactory());

@@ -22,11 +22,6 @@ public class VotoDaoJpaTest {
 	VotoDao votoDao;
 	Voto voto;
 	
-	@BeforeClass
-	public static void beforeClass(){
-		
-	}
-	
 	@Before
 	public void before(){
 		DaoFactory.setFactory(new DaoJpaFactory());
@@ -53,7 +48,8 @@ public class VotoDaoJpaTest {
 
 	@Test
 	public void testDeleteById() {
-		fail("Not yet implemented");
+		votoDao.deleteById(voto.getId());
+		assertNull(votoDao.read(voto.getId()));
 	}
 
 	@Test
