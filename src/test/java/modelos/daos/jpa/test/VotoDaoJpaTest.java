@@ -57,7 +57,13 @@ public class VotoDaoJpaTest {
 
 	@Test
 	public void testFindAll() {
-		fail("Not yet implemented");
+		List<Voto> votos = new ArrayList<Voto>();
+		votos.add(voto);
+		Voto voto2= new Voto(7, "127.2.2.1", Estudios.NIVEL_BAJO);
+		votos.add(voto2);
+		votoDao.create(voto2);
+		
+		assertEquals(votoDao.findAll(), votos);
 	}
 
 }
